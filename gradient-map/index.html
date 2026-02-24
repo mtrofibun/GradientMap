@@ -4,15 +4,36 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--<link rel="stylesheet" href="/style.css">-->
-    <title>PixiJS - Template</title>
+    <link rel="stylesheet" href="public/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Online Gradient Map Tool</title>
 </head>
 
 <body>
     
-    <input id="gradientInput" type="file" accept="image/*">
+    <h2>Online Gradient Map Tool</h2>
+    <div id = "intro">
+    <p>Welcome to my Gradient Map Tool! Your first submitted image will be the canvas size. The image on display may look low resolution but no worries, I made a copy onto the browser that will retain it's size and custom gradients you added.</p>
+    <p>Gradients can be downloaded and imported.</p>
+    </div>
+    <div id ="imageInput">
+    <label for = "gradientInput" id = "imageButton">Select Image</label>
+    <input id="gradientInput" type="file" accept="image/*" style = "display:none;">
+    </div>
     <div id="canvasContainer"></div>
-
-    <script type="module" src="/src/main.js"></script>
+    <button onclick="downloadImage()">Download Image</button>
+    <div id = "gradientContainer">
+        <aside id ="gradientPanel" style = "display:none;">
+        <button><i class="fa fa-download"></i> Download Gradient</button>
+        <button><i class="fa fa-download"></i> Import Gradient</button>
+        </aside>
+    </div>
+    <div id = "layerContainer">
+        <button>+ Add Gradient</button>
+        <aside id = "layerPanel"></aside>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/pixi.js@8/dist/pixi.min.js"></script>
+    <script type="module" src="src/main.js"></script>
 </body>
 </html>

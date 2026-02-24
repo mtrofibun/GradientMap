@@ -1,8 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #000000;
+    height:100vh;
 }
 
 #app {
@@ -12,4 +11,26 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#canvasContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#imageInput{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin:5px;
+}
+
+#imageButton{
+    border:1px solid black;
+    padding:15px;
+}
+
+#imageButton:hover{
+    background-color: blanchedalmond;
 }
