@@ -13,7 +13,7 @@
     
     <h2>Online Gradient Map Tool</h2>
     <div id = "intro">
-    <p>Welcome to my Gradient Map Tool! Your first submitted image will be the canvas size. The image on display may look low resolution but no worries, I made a copy onto the browser that will retain it's size and custom gradients you added.</p>
+    <p>Welcome to my Gradient Map Tool! Your first submitted image will be the canvas size, yes even if you delete all of them. The image on display may look low resolution but no worries, I made a copy onto the browser that will retain it's size and custom gradients you added.</p>
     <p>Gradients can be downloaded and imported.</p>
     </div>
     <div id ="imageInput">
@@ -28,11 +28,13 @@
         <button><i class="fa fa-download"></i> Import Gradient</button>
         </aside>
     </div>
-    <div id = "layerContainer">
+    <div id = "fullLayerContainer"><button id = "togglebtn">Toggle Layers</button>
+    <div id = "layerContainer" style = "display:absolute;">
+        
         <button>+ Add Gradient</button>
         <aside id = "layerPanel"></aside>
     </div>
-    
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/pixi.js@8/dist/pixi.min.js"></script>
     <script type="module" src="src/main.js"></script>
 </body>

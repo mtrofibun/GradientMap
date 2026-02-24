@@ -17,6 +17,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 #imageInput{
@@ -33,4 +34,27 @@ body {
 
 #imageButton:hover{
     background-color: blanchedalmond;
+}
+#intro{
+    display:grid;
+    text-align:center;
+
+    justify-content: center;
+    align-items: center;
+}
+#fullLayerContainer{
+    position: fixed;
+    right:0;
+    top:0;
+    
+}
+
+#layerContainer{
+    transition: transform 0.3s ease;
+    background-color:rgba(32, 29, 50, 0.82);
+    padding:10px;
+}
+
+.hidden{
+    transform:translateX(250px);
 }

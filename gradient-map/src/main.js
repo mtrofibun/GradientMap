@@ -23,6 +23,15 @@ await app.init({
 canvasContainer.appendChild(app.canvas);
 app.stage.addChild(layer);
 
+app.stage.eventMode = 'static';
+
+const toggleBtn = document.getElementById('togglebtn');
+const sidebar = document.getElementById('layerContainer');
+
+toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('hidden');
+});
+
 const gradientInput = document.getElementById('gradientInput');
 gradientInput.addEventListener('change', handleFileChange);
 
@@ -52,6 +61,15 @@ function addImageLayer(imageUrl) {
         const texture = await PIXI.Assets.load(imageUrl);
         const sprite = new PIXI.Sprite(texture);
 
+        sprite.eventMode = 'static'
+        sprite.cursor = 'pointer';
+
+        let isDragging = false;
+        let dragOffsetX = 0;
+        let dragOffsetY = 0;
+
+        
+
         sprite.originalWidth = img.width;
         sprite.originalHeight = img.height;
 
@@ -63,6 +81,25 @@ function addImageLayer(imageUrl) {
         maxHeight = sprite.height;
         maxWidth = sprite.width;
         }
+
+        sprite.on('pointerdown', (e) => {
+            isDragging = true;
+            const pos = app.stage.toLocal(e.global);
+            dragOffsetX = pos.x - sprite.x;
+            dragOffsetY = pos.y - sprite.y;
+        });
+
+        app.stage.on('pointermove', (e) => {
+            if (!isDragging) return;
+            const pos = app.stage.toLocal(e.global);
+            sprite.x = pos.x - dragOffsetX;
+            sprite.y = pos.y - dragOffsetY;
+            
+        });
+
+        app.stage.on('pointerup', () => {
+            isDragging = false;
+        });
         pixiContainer.addChild(sprite);
         app.stage.addChild(pixiContainer);
         
@@ -74,6 +111,8 @@ function addImageLayer(imageUrl) {
             originalHeight: img.height,
             gradientMap: null,
         });
+
+        
          imageCounter++;
         updateLayerUI();
     };
@@ -96,7 +135,7 @@ function updateLayerUI() {
     layers.forEach((layer, index) => {
         const item = document.createElement('div');
         item.textContent = layer.container.label;
-
+        item.style.background = "white";
         const toggle = document.createElement('button');
         toggle.textContent = '👁';
         toggle.onclick = () => {
@@ -106,10 +145,17 @@ function updateLayerUI() {
         const remove = document.createElement('button');
         remove.textContent = "🗑️"
         remove.onclick = () =>{
-            
+            deleteLayer(index);
+            app.stage.removeChild(layer.container);
+            item.remove();
+            imageCounter--;
         }
         item.appendChild(toggle);
         item.appendChild(remove);
         layerList.appendChild(item);
     });
+}
+
+function deleteLayer(index) {
+    layers.splice(index,1);
 }
