@@ -16,16 +16,17 @@
     <p>Welcome to my Gradient Map Tool! Your first submitted image will be the canvas size, yes even if you delete all of them. The image on display may look low resolution but no worries, I made a copy onto the browser that will retain it's size and custom gradients you added.</p>
     <p>Gradients can be downloaded and imported.</p>
     </div>
+   
     <div id ="imageInput">
-    <label for = "gradientInput" id = "imageButton">Select Image</label>
-    <input id="gradientInput" type="file" accept="image/*" style = "display:none;">
+    <label for = "selectImage" id = "imageButton">Select Image</label>
+    <input id="selectImage" type="file" accept="image/*" style = "display:none;">
     </div>
     <div id="canvasContainer"></div>
     <button onclick="downloadImage()">Download Image</button>
     <div id = "gradientContainer">
         <aside id ="gradientPanel" style = "display:none;">
-        <button><i class="fa fa-download"></i> Download Gradient</button>
-        <button><i class="fa fa-download"></i> Import Gradient</button>
+        <button id = "downloadg"><i class="fa fa-download" ></i> Download Gradient</button>
+        <button id = "importg" type="file" accept="json/*"><i class="fa fa-download"></i> Import Gradient</button>
         </aside>
     </div>
     <div id = "fullLayerContainer"><button id = "togglebtn">Toggle Layers</button>
